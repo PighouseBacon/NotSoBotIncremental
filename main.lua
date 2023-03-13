@@ -126,8 +126,12 @@ graphic = graphic .. makeText(maketime(difference), 424, 424)
 graphic = graphic .. makeText(maketime(now - game[6][1]), 824, 424)
 --total
 graphic = graphic .. makeText(sciformat(game[6][2]), 424, 552)
---coop
-graphic = graphic .. makeText("1", 824, 552)
+--co-op
+if #game[5] > 1 then
+    graphic = graphic .. "\ncreate cover 392 56 0 0 0 255"
+    graphic = graphic .. "\noverlay template cover 432 544"
+    graphic = graphic .. makeText(#game[5], 824, 552)
+end
 --render
 graphic = graphic .. "\nrender template}"
 
