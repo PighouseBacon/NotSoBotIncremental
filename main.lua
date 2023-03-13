@@ -118,13 +118,13 @@ graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/Not
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
 graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
 --start
-graphic = graphic .. makeText(maketime(now - game[6][1]), 376, 424)
+graphic = graphic .. makeText(maketime(now - game[6][1]), 416, 424)
 --prev
-graphic = graphic .. makeText(maketime(difference), 776, 424)
+graphic = graphic .. makeText(maketime(difference), 816, 424)
 --total
-graphic = graphic .. makeText(sciformat(game[6][2]), 376, 552)
+graphic = graphic .. makeText(sciformat(game[6][2]), 416, 552)
 --coop
-graphic = graphic .. makeText("1", 776, 552)
+graphic = graphic .. makeText("1", 816, 552)
 --render
 graphic = graphic .. "\nrender template}"
 
