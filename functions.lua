@@ -114,10 +114,9 @@ end
 
 function makeText (val, x, y)
     text = ""
-    cur = sciformat(val)
-    for i = 1, #cur do
-        char = (#cur - i) + 1
-        char = cur:sub(char, char)
+    for i = 1, #val do
+        char = (#val - i) + 1
+        char = val:sub(char, char)
         text = text .. "\noverlay cropped spritesheet " .. locs[char] .. " 0"
         text = text .. "\noverlay template cropped " .. tostring(x - (48 * i)) .. " ".. tostring(y)
     end
