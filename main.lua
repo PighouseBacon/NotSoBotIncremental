@@ -1,4 +1,4 @@
-print("Version 2")
+print("Version 3")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -80,7 +80,7 @@ if input[2] == "buy" then
         end
     elseif type(tonumber(input[3])) == "number" then
         if input[4] == "former" or input[4] == "formers" then
-            for i = 1, number(input[3]) do
+            for i = 1, tonumber(input[3]) do
                 if game[2] >= buildingcosts[1] then
                     game[2] = game[2] - buildingcosts[1]
                     game[3][1] = game[3][1] + 1
@@ -91,7 +91,7 @@ if input[2] == "buy" then
             end
             print("Bought " .. tostring(i) .. " formers!")
         elseif input[4] == "maker" or input[4] == "makers" then
-            for i = 1, number(input[3]) do
+            for i = 1, tonumber(input[3]) do
                 if game[2] >= buildingcosts[2] then
                     game[2] = game[2] - buildingcosts[2]
                     game[3][2] = game[3][2] + 1
