@@ -23,10 +23,8 @@ game[6][2] = game[6][2] + getClickValue()
 
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
-affordable = {}
 nextup = {1, 10}
 for i = 1, #game[4] do
-    affordable[i] = game[2] >= upgradecosts[i]
     if game[4][i] then
         nextup = {i + 1, upgradecosts[i + 1]}
     end
@@ -133,7 +131,7 @@ for i = 1, #game[4] do
     if game[4][i] then
         colors[1] = tostring((i * 64) - 8)
     end
-    if affordable[i] or game[4][i] then
+    if game[2] >= upgradecosts[i] or game[4][i] then
         colors[2] = tostring(((8 - i) * 64) - 8)
     end
 end
