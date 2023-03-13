@@ -54,7 +54,6 @@ multipliers[1] = multipliers[1] * (game[3][1] + 1)
 game[2] = game[2] + multipliers[1]
 game[6][2] = game[6][2] + multipliers[1]
 
---then, execute any commands
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
 affordable = {}
@@ -69,8 +68,10 @@ for i = 1, #upgradecosts do
     end
 end
 
+--then, execute any commands
+
 --now generate the graphic
-chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!"}
+chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!", "H"}
 locs = {}
 for i = 1, #chars do
     locs[chars[i]] = tostring(-48 * (i - 1))
@@ -82,23 +83,23 @@ graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/Not
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
 graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
 --money value
-graphic = graphic .. makeText(game[2], 328, 384)
+graphic = graphic .. makeText(sciformat(game[2]), 328, 384)
 --money/sec
-graphic = graphic .. makeText(game[3][1] * multipliers[2], 632, 384)
+graphic = graphic .. makeText(sciformat(game[3][1] * multipliers[2]), 632, 384)
 --money/click
-graphic = graphic .. makeText(multipliers[1], 936, 384)
+graphic = graphic .. makeText(sciformat(multipliers[1]), 936, 384)
 --formers
-graphic = graphic .. makeText(game[3][1], 328, 512)
+graphic = graphic .. makeText(sciformat(game[3][1]), 328, 512)
 --formers cost
-graphic = graphic .. makeText(buildingcosts[1], 632, 512)
+graphic = graphic .. makeText(sciformat(buildingcosts[1]), 632, 512)
 --formers making
-graphic = graphic .. makeText(multipliers[2], 936, 512)
+graphic = graphic .. makeText(sciformat(multipliers[2]), 936, 512)
 --makers
-graphic = graphic .. makeText(game[3][2], 328, 640)
+graphic = graphic .. makeText(sciformat(game[3][2]), 328, 640)
 --makers cost
-graphic = graphic .. makeText(buildingcosts[2], 632, 640)
+graphic = graphic .. makeText(sciformat(buildingcosts[2]), 632, 640)
 --makers making
-graphic = graphic .. makeText(multipliers[3], 936, 640)
+graphic = graphic .. makeText(sciformat(multipliers[3]), 936, 640)
 --upgrades
 if colors[1] ~= "0" then
     graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 128"
@@ -124,4 +125,5 @@ graphic = graphic .. "\nrender stats}"
 debug = tabletostring(game)
 print(debug)
 print(encode(debug))
+print(maketime(difference))
 print(graphic)
