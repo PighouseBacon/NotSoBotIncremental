@@ -1,4 +1,4 @@
-print("Version 8")
+print("Version 10")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -178,7 +178,15 @@ end
 graphic = graphic .. "\nrender template}\n"
 
 if #split(graphic, "\n") > 50 then
-    print(graphic:sub(2))
+    print(sciformat(game[2]))
+    print(sciformat(game[3][1] * getFormerValue()))
+    print(sciformat(getClickValue()))
+    print(sciformat(game[3][1]))
+    print(sciformat(buildingcosts[1]))
+    print(sciformat(getFormerValue()))
+    print(sciformat(game[3][2] * getMakerValue()))
+    print(sciformat(buildingcosts[2]))
+    print(sciformat(getMakerValue()))
     graphic = ""
 end
 
