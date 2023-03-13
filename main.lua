@@ -14,48 +14,18 @@ print("\n")
 
 game = decode(input[1])
 --now..simulate tick(s)
-multipliers = {1, 1, 1}
-if game[4][1] then
-    multipliers[1] = multipliers[1] * 2
-end
-if game[4][2] then
-    multipliers[1] = multipliers[1] * 5
-end
-if game[4][3] then
-    multipliers[2] = multipliers[2] * 2
-end
-if game[4][4] then
-    multipliers[2] = multipliers[2] * 5
-end
-if game[4][5] then
-    multipliers[3] = multipliers[3] * 2
-end
-if game[4][6] then
-    multipliers[3] = multipliers[3] * 5
-end
-if game[4][7] then
-    multipliers[1] = multipliers[1] * 2
-    multipliers[2] = multipliers[2] * 2
-    multipliers[3] = multipliers[3] * 2
-end
-if game[4][8] then
-    multipliers[1] = multipliers[1] * 5
-    multipliers[2] = multipliers[2] * 5
-    multipliers[3] = multipliers[3] * 5
-end
 now = os.time()
 if now < game[1] then
     oops(1, 48)
 end
 difference = now - game[1]
 game[1] = now
-moneytick = math.floor((game[3][1] * multipliers[2] * difference) + (game[3][2] * multipliers[3] * 0.5 * (difference^2 + difference)) + 0.5)
+moneytick = math.floor((game[3][1] * getFormerValue() * difference) + (game[3][2] * getMakerValue() * 0.5 * (difference^2 + difference)) + 0.5)
 game[2] = game[2] + moneytick
 game[6][2] = game[6][2] + moneytick 
-game[3][1] = game[3][1] + (game[3][2] * multipliers[3] * difference)
-multipliers[1] = multipliers[1] * (game[3][1] + 1)
-game[2] = game[2] + multipliers[1]
-game[6][2] = game[6][2] + multipliers[1]
+game[3][1] = game[3][1] + (game[3][2] * getMakerValue() * difference)
+game[2] = game[2] + getClickValue()
+game[6][2] = game[6][2] + getClickValue()
 
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
@@ -164,7 +134,7 @@ for i = 1, #game[4] do
     if game[4][i] then
         colors[1] = tostring((i * 64) - 8)
     end
-    if affordable[i] then
+    if affordable[i] or game[4][i] then
         colors[2] = tostring(((8 - i) * 64) - 8)
     end
 end
@@ -183,21 +153,21 @@ graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
 --money value
 graphic = graphic .. makeText(sciformat(game[2]), 328, 384)
 --money/sec
-graphic = graphic .. makeText(sciformat(game[3][1] * multipliers[2]), 632, 384)
+graphic = graphic .. makeText(sciformat(game[3][1] * getFormerValue()), 632, 384)
 --money/click
-graphic = graphic .. makeText(sciformat(multipliers[1]), 936, 384)
+graphic = graphic .. makeText(sciformat(getClickValue()), 936, 384)
 --formers
 graphic = graphic .. makeText(sciformat(game[3][1]), 328, 512)
 --formers cost
 graphic = graphic .. makeText(sciformat(buildingcosts[1]), 632, 512)
 --formers making
-graphic = graphic .. makeText(sciformat(multipliers[2]), 936, 512)
+graphic = graphic .. makeText(sciformat(getFormerValue()), 936, 512)
 --makers
 graphic = graphic .. makeText(sciformat(game[3][2]), 328, 640)
 --makers cost
 graphic = graphic .. makeText(sciformat(buildingcosts[2]), 632, 640)
 --makers making
-graphic = graphic .. makeText(sciformat(multipliers[3]), 936, 640)
+graphic = graphic .. makeText(sciformat(getMakerValue()), 936, 640)
 --upgrades
 if colors[1] ~= "0" then
     graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 128"
