@@ -44,27 +44,31 @@ if input[2] == "buy" then
         end
     elseif type(tonumber(input[3])) == "number" then
         if input[4] == "former" or input[4] == "formers" then
+            amount = 0
             for i = 1, tonumber(input[3]) do
                 if game[2] >= buildingcosts[1] then
                     game[2] = game[2] - buildingcosts[1]
                     game[3][1] = game[3][1] + 1
                     buildingcosts[1] = math.floor(10 * (2^game[3][1]) + 0.5)
+                    amount = i
                 else
                     break
                 end
             end
-            print("Bought " .. tostring(i) .. " formers!")
+            print("Bought " .. tostring(amount) .. " formers!")
         elseif input[4] == "maker" or input[4] == "makers" then
+            amount = 0
             for i = 1, tonumber(input[3]) do
                 if game[2] >= buildingcosts[2] then
                     game[2] = game[2] - buildingcosts[2]
                     game[3][2] = game[3][2] + 1
                     buildingcosts[2] = math.floor(1000 * (5^game[3][2]) + 0.5)
+                    amount = i
                 else
                     break
                 end
             end
-            print("Bought " .. tostring(i) .. " makers!")
+            print("Bought " .. tostring(amount) .. " makers!")
         else
             print("Not sure which building you're trying to buy...")
         end
@@ -104,6 +108,7 @@ elseif input[2] == "coop" or input[2] == "co-op" then
                     print("You cannot remove the player who created the save!")
                 else
                     table.remove(game[5], found[2])
+                    print("Removed user from co-op!")
                 end
             else
                 print("That user isn't in this co-op!")
