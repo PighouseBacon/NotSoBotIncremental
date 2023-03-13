@@ -1,4 +1,4 @@
-print("Version 30")
+print("Version 31")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -130,7 +130,7 @@ graphic = graphic .. makeText(sciformat(game[6][2]), 424, 552)
 if #game[5] > 1 then
     graphic = graphic .. "\ncreate cover 392 56 0 0 0 255"
     graphic = graphic .. "\noverlay template cover 432 544"
-    graphic = graphic .. makeText(#game[5], 824, 552)
+    graphic = graphic .. makeText(tostring(#game[5]), 824, 552)
 end
 --render
 graphic = graphic .. "\nrender template}"
