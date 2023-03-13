@@ -1,4 +1,4 @@
-print("Version 5")
+print("Version 6")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -160,14 +160,14 @@ graphic = graphic .. makeText(sciformat(buildingcosts[1]), 632, 512)
 --formers making
 graphic = graphic .. makeText(sciformat(getFormerValue()), 936, 512)
 --makers
-graphic = graphic .. makeText(sciformat(game[3][2]), 328, 640)
+graphic = graphic .. makeText(sciformat(game[3][2] * getMakerValue()), 328, 640)
 --makers cost
 graphic = graphic .. makeText(sciformat(buildingcosts[2]), 632, 640)
 --makers making
 graphic = graphic .. makeText(sciformat(getMakerValue()), 936, 640)
 --upgrades
 if colors[1] ~= "0" then
-    graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 128"
+    graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 192"
     graphic = graphic .. "\noverlay template green 432 696"
 end
 if colors[2] ~= "-8" then
