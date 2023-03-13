@@ -1,16 +1,10 @@
-print("Version 3")
+print("Version 5")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
 end
 
 input = split("{args} ", " ")
---[[
-for key,value in pairs(input) do
-    print(value)
-end
-print("\n")
---]]
 
 game = decode(input[1])
 --now..simulate tick(s)
