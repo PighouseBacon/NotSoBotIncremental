@@ -112,6 +112,21 @@ function sciformat (val)
     return tostring(val)
 end
 
+function maketime (val)
+    hours = (val // 3600)
+    if hours < 100 then
+        seconds = ("0" .. (val % 60)):sub(-2)
+        minutes = ("0" .. ((val // 60) % 60)):sub(-2)
+        hours = ("0" .. hours):sub(-2)
+        timeformat = (hours .. ":" .. minutes .. ":" .. seconds)
+    elseif hours < 100000 then
+        timeformat = ("00" .. hours):sub(-5) .. "H"
+    else
+        timeformat = "99999H"
+    end
+    return timeformat
+end
+
 function makeText (val, x, y)
     text = ""
     for i = 1, #val do
