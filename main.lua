@@ -72,6 +72,33 @@ for i = 1, #upgradecosts do
 end
 
 --then, execute any commands
+if input[2] == "buy" then
+    if input[3] == "upgrade" then
+        --check if next available upgrade is affordable, if so remove money and give
+        --otherwise give error
+    elseif type(tonumber(input[3])) == "number" then
+        if input[4] == "former" or input[4] == "formers" then
+            --either find formula to get arbitrary cost amounts...
+            --or go from 1 to input[3], remove money, add a former, until next cost too high
+        elseif input[4] == "maker" or input[4] == "makers" then
+            --ditto with formers
+        else
+            print("Not sure which building you're trying to buy...")
+        end
+    else
+        print("Not sure what you want to buy...")
+    end
+elseif input[2] == "coop" or input[2] == "co-op" then
+    if input[3] == "add" then
+        --look at id, maybe check if it's a valid discord user id, make sure it's not already in the co-op, then add
+    elseif input[3] == "remove" then
+        --search through co-op to find this id, remove as long as it's not the first, if not found return error
+    else
+        print("Not sure which co-op setting you're trying to edit...")
+    end
+elseif input[2] ~= nil then
+    print("Unknown command!")
+end
 
 --now generate the graphic
 chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!", "H"}
