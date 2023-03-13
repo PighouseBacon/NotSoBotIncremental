@@ -82,31 +82,31 @@ graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/Not
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
 graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
 --money value
-graphic = graphic .. makeText(game[2], 328, 200)
+graphic = graphic .. makeText(game[2], 328, 384)
 --money/sec
-graphic = graphic .. makeText(game[3][1] * multipliers[2], 632, 200)
+graphic = graphic .. makeText(game[3][1] * multipliers[2], 632, 384)
 --money/click
-graphic = graphic .. makeText(multipliers[1], 936, 200)
+graphic = graphic .. makeText(multipliers[1], 936, 384)
 --formers
-graphic = graphic .. makeText(game[3][1], 328, 328)
+graphic = graphic .. makeText(game[3][1], 328, 512)
 --formers cost
-graphic = graphic .. makeText(buildingcosts[1], 632, 328)
+graphic = graphic .. makeText(buildingcosts[1], 632, 512)
 --formers making
-graphic = graphic .. makeText(multipliers[2], 936, 328)
+graphic = graphic .. makeText(multipliers[2], 936, 512)
 --makers
-graphic = graphic .. makeText(game[3][2], 328, 456)
+graphic = graphic .. makeText(game[3][2], 328, 640)
 --makers cost
-graphic = graphic .. makeText(buildingcosts[2], 632, 456)
+graphic = graphic .. makeText(buildingcosts[2], 632, 640)
 --makers making
-graphic = graphic .. makeText(multipliers[3], 936, 456)
+graphic = graphic .. makeText(multipliers[3], 936, 640)
 --upgrades
 if colors[1] ~= "0" then
     graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 128"
-    graphic = graphic .. "\noverlay template green 432 512"
+    graphic = graphic .. "\noverlay template green 432 696"
 end
 if colors[2] ~= "-8" then
     graphic = graphic .. "\ncreate black " .. colors[2] .. " 56 0 0 0 128"
-    graphic = graphic .. "\noverlay template black " .. tostring(936 - colors[2]) .. " 512"
+    graphic = graphic .. "\noverlay template black " .. tostring(936 - colors[2]) .. " 696"
 end
 --render
 graphic = graphic .. "\nrender template}\n"
