@@ -44,6 +44,9 @@ if game[4][8] then
     multipliers[3] = multipliers[3] * 5
 end
 now = os.time()
+if now < game[1] then
+    oops(1, 48)
+end
 difference = now - game[1]
 game[1] = now
 moneytick = math.floor((game[3][1] * multipliers[2] * difference) + (game[3][2] * multipliers[3] * 0.5 * (difference^2 + difference)) + 0.5)
