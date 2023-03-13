@@ -1,4 +1,4 @@
-print("Version 28")
+print("Version 29")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -114,7 +114,7 @@ graphic = graphic .. "\nrender template}\n"
 
 --stats graphic
 graphic = graphic .. "{" .. "iscript: "
-graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/stats.png stats"
+graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/stats.png template"
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
 graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
 --start
@@ -126,7 +126,7 @@ graphic = graphic .. makeText(sciformat(game[6][2]), 376, 552)
 --coop
 graphic = graphic .. makeText("1", 776, 552)
 --render
-graphic = graphic .. "\nrender stats}"
+graphic = graphic .. "\nrender template}"
 
 
 
