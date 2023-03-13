@@ -167,7 +167,7 @@ graphic = graphic .. makeText(sciformat(buildingcosts[2]), 632, 640)
 graphic = graphic .. makeText(sciformat(getMakerValue()), 936, 640)
 --upgrades
 if colors[1] ~= "0" then
-    graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 192"
+    graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 34 177 76 192"
     graphic = graphic .. "\noverlay template green 432 696"
 end
 if colors[2] ~= "-8" then
