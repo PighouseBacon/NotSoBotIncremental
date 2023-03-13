@@ -29,7 +29,7 @@ function oops (id, other)
         print("Malformed Input")
         print(other)
     elseif id == 2 then
-        print("You're not in this savefile's coop!")
+        print("You're not in this savefile's co-op!")
     elseif id == 3 then
         print("Under maintenance! Please try again later.")
     end
