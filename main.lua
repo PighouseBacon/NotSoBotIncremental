@@ -147,6 +147,10 @@ elseif input[2] == "coop" or input[2] == "co-op" then
         else
             print("Invalid ID!")
         end
+    elseif input[3] == "list" then
+        for i = 1, #game[5] do
+            print("Player " .. tostring(i) .. ": <@" .. tostring(game[5][i]) .. ">")
+        end
     else
         print("Not sure which co-op setting you're trying to edit...")
     end
