@@ -1,4 +1,4 @@
-print("Version 27")
+print("Version 28")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -122,9 +122,9 @@ graphic = graphic .. makeText(maketime(now - game[6][1]), 376, 424)
 --prev
 graphic = graphic .. makeText(maketime(difference), 776, 424)
 --total
-graphic = graphic .. makeText(scinotate(game[6][2]), 376, 552)
+graphic = graphic .. makeText(sciformat(game[6][2]), 376, 552)
 --coop
---graphic = graphic .. makeText(maketime(difference), 776, 552)
+graphic = graphic .. makeText("1", 776, 552)
 --render
 graphic = graphic .. "\nrender stats}"
 
