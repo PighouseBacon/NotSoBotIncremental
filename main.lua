@@ -109,10 +109,10 @@ if input[2] == "buy" then
     end
 elseif input[2] == "coop" or input[2] == "co-op" then
     if input[3] == "add" then
-        if type(tonumber(input[3])) == "number" then
+        if type(tonumber(input[4])) == "number" then
             found = false
             for i = 1, #game[5] do
-                if game[5][i] == tonumber(input[3]) then
+                if game[5][i] == tonumber(input[4]) then
                     found = true
                     break
                 end
@@ -120,17 +120,17 @@ elseif input[2] == "coop" or input[2] == "co-op" then
             if found then
                 print("That player is already in the co-op!")
             else
-                table.insert(game[5], tonumber(input[3]))
+                table.insert(game[5], tonumber(input[4]))
                 print("Added user to co-op!")
             end
         else
             print("Invalid ID!")
         end
     elseif input[3] == "remove" then
-        if type(tonumber(input[3])) == "number" then
+        if type(tonumber(input[4])) == "number" then
             found = {false}
             for i = 1, #game[5] do
-                if game[5][i] == tonumber(input[3]) then
+                if game[5][i] == tonumber(input[4]) then
                     found = {true, i}
                     break
                 end
