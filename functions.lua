@@ -158,7 +158,7 @@ function sciformat (val)
         return "!"
     end
     exponent = math.floor(math.log(val, 10))
-    if exponent >= 4 then
+    if exponent >= 3 then
         if exponent >= 100 then
             mantissa = ""
         else
