@@ -49,6 +49,57 @@ function genCode ()
     return encode(message)
 end
 
+function getClickValue ()
+    value = game[3][1] + 1
+    if game[4][1] then
+        value = value * 2
+    end
+    if game[4][2] then
+        value = value * 5
+    end
+    if game[4][7] then
+        value = value * 2
+    end
+    if game[4][8] then
+        value = value * 5
+    end
+    return value
+end
+
+function getFormerValue ()
+    value = 1
+    if game[4][3] then
+        value = value * 2
+    end
+    if game[4][4] then
+        value = value * 5
+    end
+    if game[4][7] then
+        value = value * 2
+    end
+    if game[4][8] then
+        value = value * 5
+    end
+    return value
+end
+
+function getMakerValue ()
+    value = 1
+    if game[4][5] then
+        value = value * 2
+    end
+    if game[4][6] then
+        value = value * 5
+    end
+    if game[4][7] then
+        value = value * 2
+    end
+    if game[4][8] then
+        value = value * 5
+    end
+    return value
+end
+
 function split (str, splitter, maxDepth)
     result = {}
     depth = 0
