@@ -54,7 +54,6 @@ multipliers[1] = multipliers[1] * (game[3][1] + 1)
 game[2] = game[2] + multipliers[1]
 game[6][2] = game[6][2] + multipliers[1]
 
---then, execute any commands
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
 affordable = {}
@@ -69,8 +68,10 @@ for i = 1, #upgradecosts do
     end
 end
 
+--then, execute any commands
+
 --now generate the graphic
-chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!"}
+chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!", "H"}
 locs = {}
 for i = 1, #chars do
     locs[chars[i]] = tostring(-48 * (i - 1))
@@ -124,4 +125,5 @@ graphic = graphic .. "\nrender stats}"
 debug = tabletostring(game)
 print(debug)
 print(encode(debug))
+print(maketime(difference))
 print(graphic)
