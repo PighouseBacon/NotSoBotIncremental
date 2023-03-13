@@ -14,7 +14,6 @@ function oops (id, other)
         elseif input[2] == "command" or input[2] == "commands" then
             print("The full list of commands you can use is as follows:")
             print("buy [val] [id]:   buys [val] of building [id]")
-            print("sell [val] [id]:   sells [val] of building [id]")
             print("buy upgrade:   buys the next available upgrade, if it is affordable")
             print("coop add [id]:   allows another user to play this savefile")
             print("coop remove [id]:   removes a user from playing this savefile")
