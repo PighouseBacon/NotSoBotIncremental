@@ -1,4 +1,4 @@
-print("Version 1")
+print("Version 2")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -74,6 +74,7 @@ if input[2] == "buy" then
         if nextup[1] < 9 and game[2] >= nextup[2] then
             game[2] = game[2] - nextup[2]
             game[4][nextup[1]] = true
+            print("Bought upgrade!")
         else
             print("You can't buy an upgrade!")
         end
