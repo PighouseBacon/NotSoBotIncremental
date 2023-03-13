@@ -2,16 +2,16 @@ function oops (id, other)
     if id == 0 then
         --help message
         if input[2] == "upgrade" or input[2] == "upgrades" then
-            print("description of upgrades")
-        else
-            print("This is an incremental game using NotSoBot tag scripting.")
-            print("To play, each time you use the tag, you will get a code.")
-            print("You must then add the code to the end of your next use of the tag.")
-            print("For example, using the tag correctly would look something like this: ``{prefix}t incremental fe12be [command]``")
-            print("Each use of the tag calculates production equal to the time between the previous use of the tag and now,")
-            print("as well as adding additional resources equal to your \"click\" value.\n")
-            --[[
-            print("There are some commands you can use by appending them after the code as well.")
+            print("There are a few upgrades that you can purchase in this game.")
+            print("Green upgrades boost click value,")
+            print("Blue upgrades boost formers,")
+            print("Purple upgrades boost makers,")
+            print("And orange upgrades boost all three!")
+            print("The plus upgrades give a 2x boost, and the star upgrades give a 5x boost (for a total of x10).")
+            print("Upgrades must be bought in order, from left to right. They also get more expensive from left to right.")
+            print("When you buy an upgrade, it will be tinted green. If you cannot afford an upgrade, it will be tinted black.")
+            print("Upgrades without a tint indicate that you have enough resources to buy it.")
+        elseif input[2] == "command" or input[2] == "commands" then
             print("The full list of commands you can use is as follows:")
             print("buy [val] [id]:   buys [val] of building [id]")
             print("sell [val] [id]:   sells [val] of building [id]")
@@ -19,8 +19,15 @@ function oops (id, other)
             print("coop add [id]:   allows another user to play this savefile")
             print("coop remove [id]:   removes a user from playing this savefile")
             print("coop list:   lists the current users who can play this savefile")
-            print("You can also do ``.t incremental help [subject]`` for a description of a part in the game.\n")
-            --]]
+        else
+            print("This is an incremental game using NotSoBot tag scripting.")
+            print("To play, each time you use the tag, you will get a code.")
+            print("You must then add the code to the next use of the tag.")
+            print("There are some commands you can use by appending them after the code as well.")
+            print("For example, using the tag correctly would look something like this: ``{prefix}t incremental fe12be [command]``")
+            print("You can also do ``{prefix}t incremental help [subject]`` for a description of a part in the game.")
+            print("Each use of the tag calculates production equal to the time between the previous use of the tag and now,")
+            print("as well as adding additional resources equal to your \"click\" value.\n")
             print("To start playing, use the following code:")
             print(genCode())
         end
