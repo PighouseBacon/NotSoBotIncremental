@@ -82,23 +82,23 @@ graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/Not
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
 graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
 --money value
-graphic = graphic .. makeText(game[2], 328, 384)
+graphic = graphic .. makeText(sciformat(game[2]), 328, 384)
 --money/sec
-graphic = graphic .. makeText(game[3][1] * multipliers[2], 632, 384)
+graphic = graphic .. makeText(sciformat(game[3][1] * multipliers[2]), 632, 384)
 --money/click
-graphic = graphic .. makeText(multipliers[1], 936, 384)
+graphic = graphic .. makeText(sciformat(multipliers[1]), 936, 384)
 --formers
-graphic = graphic .. makeText(game[3][1], 328, 512)
+graphic = graphic .. makeText(sciformat(game[3][1]), 328, 512)
 --formers cost
-graphic = graphic .. makeText(buildingcosts[1], 632, 512)
+graphic = graphic .. makeText(sciformat(buildingcosts[1]), 632, 512)
 --formers making
-graphic = graphic .. makeText(multipliers[2], 936, 512)
+graphic = graphic .. makeText(sciformat(multipliers[2]), 936, 512)
 --makers
-graphic = graphic .. makeText(game[3][2], 328, 640)
+graphic = graphic .. makeText(sciformat(game[3][2]), 328, 640)
 --makers cost
-graphic = graphic .. makeText(buildingcosts[2], 632, 640)
+graphic = graphic .. makeText(sciformat(buildingcosts[2]), 632, 640)
 --makers making
-graphic = graphic .. makeText(multipliers[3], 936, 640)
+graphic = graphic .. makeText(sciformat(multipliers[3]), 936, 640)
 --upgrades
 if colors[1] ~= "0" then
     graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 0 128 0 128"
