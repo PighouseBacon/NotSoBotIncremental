@@ -1,4 +1,4 @@
-print("Version 31")
+print("Version 1")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -60,28 +60,46 @@ game[6][2] = game[6][2] + multipliers[1]
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
 affordable = {}
-colors = {"0", "504"}
-for i = 1, #upgradecosts do
+nextup = {1, 10}
+for i = 1, #game[4] do
     affordable[i] = game[2] >= upgradecosts[i]
     if game[4][i] then
-        colors[1] = tostring((i * 64) - 8)
-    end
-    if affordable[i] then
-        colors[2] = tostring(((8 - i) * 64) - 8)
+        nextup = {i + 1, upgradecosts[i + 1]}
     end
 end
 
 --then, execute any commands
 if input[2] == "buy" then
     if input[3] == "upgrade" then
-        --check if next available upgrade is affordable, if so remove money and give
-        --otherwise give error
+        if nextup[1] < 9 and game[2] >= nextup[2] then
+            game[2] = game[2] - nextup[2]
+            game[4][nextup[1]] = true
+        else
+            print("You can't buy an upgrade!")
+        end
     elseif type(tonumber(input[3])) == "number" then
         if input[4] == "former" or input[4] == "formers" then
-            --either find formula to get arbitrary cost amounts...
-            --or go from 1 to input[3], remove money, add a former, until next cost too high
+            for i = 1, number(input[3]) do
+                if game[2] >= buildingcosts[1] then
+                    game[2] = game[2] - buildingcosts[1]
+                    game[3][1] = game[3][1] + 1
+                    buildingcosts[1] = math.floor(10 * (2^game[3][1]) + 0.5)
+                else
+                    break
+                end
+            end
+            print("Bought " .. tostring(i) .. " formers!")
         elseif input[4] == "maker" or input[4] == "makers" then
-            --ditto with formers
+            for i = 1, number(input[3]) do
+                if game[2] >= buildingcosts[2] then
+                    game[2] = game[2] - buildingcosts[2]
+                    game[3][2] = game[3][2] + 1
+                    buildingcosts[2] = math.floor(1000 * (5^game[3][2]) + 0.5)
+                else
+                    break
+                end
+            end
+            print("Bought " .. tostring(i) .. " makers!")
         else
             print("Not sure which building you're trying to buy...")
         end
@@ -90,9 +108,44 @@ if input[2] == "buy" then
     end
 elseif input[2] == "coop" or input[2] == "co-op" then
     if input[3] == "add" then
-        --look at id, maybe check if it's a valid discord user id, make sure it's not already in the co-op, then add
+        if type(tonumber(input[3])) == "number" then
+            found = false
+            for i = 1, #game[5] do
+                if game[5][i] == tonumber(input[3]) then
+                    found = true
+                    break
+                end
+            end
+            if found then
+                print("That player is already in the co-op!")
+            else
+                table.insert(game[5], tonumber(input[3]))
+                print("Added user to co-op!")
+            end
+        else
+            print("Invalid ID!")
+        end
     elseif input[3] == "remove" then
-        --search through co-op to find this id, remove as long as it's not the first, if not found return error
+        if type(tonumber(input[3])) == "number" then
+            found = {false}
+            for i = 1, #game[5] do
+                if game[5][i] == tonumber(input[3]) then
+                    found = {true, i}
+                    break
+                end
+            end
+            if found[1] then
+                if found[2] == 1 then
+                    print("You cannot remove the player who created the save!")
+                else
+                    table.remove(game[5], found[2])
+                end
+            else
+                print("That user isn't in this co-op!")
+            end
+        else
+            print("Invalid ID!")
+        end
     else
         print("Not sure which co-op setting you're trying to edit...")
     end
@@ -101,6 +154,16 @@ elseif input[2] ~= nil then
 end
 
 --now generate the graphic
+colors = {"0", "504"}
+for i = 1, #game[4] do
+    if game[4][i] then
+        colors[1] = tostring((i * 64) - 8)
+    end
+    if affordable[i] then
+        colors[2] = tostring(((8 - i) * 64) - 8)
+    end
+end
+
 chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!", "H"}
 locs = {}
 for i = 1, #chars do
