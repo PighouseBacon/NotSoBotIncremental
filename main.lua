@@ -1,4 +1,4 @@
-print("Version 6")
+print("Version 8")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -176,6 +176,11 @@ if colors[2] ~= "-8" then
 end
 --render
 graphic = graphic .. "\nrender template}\n"
+
+if #split(graphic, "\n") > 50 then
+    print(graphic:sub(2))
+    graphic = ""
+end
 
 --stats graphic
 graphic = graphic .. "{" .. "iscript: "
