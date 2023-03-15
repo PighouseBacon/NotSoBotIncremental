@@ -16,7 +16,7 @@ function oops (id, other)
             print("buy upgrade:   buys the next available upgrade, if it is affordable")
             print("coop add [id]:   allows another user to play this savefile")
             print("coop remove [id]:   removes a user from playing this savefile")
-            print("coop list:   lists the current users who can play this savefile")
+            print("coop list [page]:   lists the current users who can play this savefile")
         else
             print("This is an incremental game using NotSoBot tag scripting.")
             print("To play, each time you use the tag, you will get a code.")
