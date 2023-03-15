@@ -14,7 +14,25 @@ for i = 1, #chars do
     locs[chars[i]] = tostring(-48 * (i - 1))
 end
 
---game graphic
+--setup
+graphic = "load https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/incremental.png\n"
+graphic = graphic .. "load https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png\n\n"
+graphic = graphic .. "const fs = require('fs');\n"
+graphic = graphic .. "const ImageScript = require('imagescript');\n"
+graphic = graphic .. "(async () => {\n"
+graphic = graphic .. "const back = await ImageScript.decode(fs.readFileSync(process.env.FILE_1));\n"
+graphic = graphic .. "const spritesheet = await ImageScript.decode(fs.readFileSync(process.env.FILE_2));\n"
+
+--actual graphic
+graphic = graphic .. "back.drawBox(10, 10, 10, 10, 0xFF0000FF)\n"
+
+--finish
+graphic = graphic .. "const value = await back.encode();\n"
+graphic = graphic .. "fs.writeFileSync('./output/file.png', value);\n"
+graphic = graphic .. "})();"
+print(graphic)
+
+--[[
 graphic = "{" .. "iscript: "
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/game%20background.png template"
 graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
@@ -81,4 +99,5 @@ if #game[5] > 1 then
 end
 --render
 graphic = graphic .. "\nrender template}"
-print(graphic)
+
+--]]
