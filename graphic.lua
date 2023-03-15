@@ -26,11 +26,13 @@ graphic = graphic .. makeText(sciformat(buildingcosts[2]), 73, 45)
 graphic = graphic .. makeText(sciformat(getMakerValue()), 111, 45)
 
 --upgrades
+quantity = 0
 for i = 1, #game[4] do
     coords = tostring(122 + (38 * ((i - 1) % 2))) .. ", " .. tostring(4 + (26 * ((i - 1) // 2)))
     if game[4][i] then
         graphic = graphic .. "var green = new ImageScript.Image(37, 21).fill(0x22B14C80);\n"
         graphic = graphic .. "back.composite(green, " .. coords .. ");\n"
+        quantity = quantity + 1
     elseif game[2] < upgradecosts[i] then
         graphic = graphic .. "var black = new ImageScript.Image(37, 21).fill(0x00000080);\n"
         graphic = graphic .. "back.composite(black, " .. coords .. ");\n"
@@ -47,8 +49,10 @@ if #game[5] > 1 then
 end
 graphic = graphic .. makeText(sciformat(game[6][2]), 111, 65)
 graphic = graphic .. makeText(sciformat(game[6][3]), 111, 81)
---%done   graphic = graphic .. makeText(.. "%", 111, 97)
-
+percent = math.max(0, 50 * (quantity / 8))
+percent = percent + (5 * math.min(10, math.max(0, math.log(game[2], 10))))
+percent = tostring(math.floor(percent * 100) / 100)
+graphic = graphic .. makeText(percent .. "%", 111, 97)
 
 --finish
 graphic = graphic .. "back.scale(10)\n"
