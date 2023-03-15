@@ -122,7 +122,7 @@ elseif input[2] == "coop" or input[2] == "co-op" then
         end
     elseif input[3] == "list" then
         page = 1
-        if type(tonumber(input[4])) == "number" and tonumber(input[4]) == math.floor(tonumber(input[4])) then
+        if type(tonumber(input[4])) == "number" and tonumber(input[4]) == math.floor(tonumber(input[4])) and tonumber(input[4]) > 0 then
             page = tonumber(input[4])
         elseif input[4] ~= nil then
             print("That's not a valid page!")
