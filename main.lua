@@ -24,22 +24,27 @@ game[6][3] = game[6][3] + 1
 
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
-nextup = {1, 10}
-for i = 1, #game[4] do
-    if game[4][i] then
-        nextup = {i + 1, upgradecosts[i + 1]}
-    end
-end
 
 --then, execute any commands
 if input[2] == "buy" then
     if input[3] == "upgrade" then
-        if nextup[1] < 9 and game[2] >= nextup[2] then
-            game[2] = game[2] - nextup[2]
-            game[4][nextup[1]] = true
-            print("Bought upgrade!")
+        if type(tonumber(input[3])) == "number" then
+            id = tonumber(input[3])
+            if game[4][id] == nil then
+                print("That upgrade doesn't exist!")
+            elseif game[4][id] then
+                print("You already have that upgrade!")
+            else
+                if game[2] < upgradecosts[id] then
+                    print("You can't afford that upgrade!")
+                else
+                    game[2] = game[2] - upgradecosts[id]
+                    game[4][id] = true
+                    print("Bought upgrade!")
+                end
+            end
         else
-            print("You can't buy an upgrade!")
+            print("Not sure which upgrade you want to buy...")
         end
     elseif type(tonumber(input[3])) == "number" then
         if input[4] == "former" or input[4] == "formers" then
