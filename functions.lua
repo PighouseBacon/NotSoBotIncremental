@@ -158,7 +158,7 @@ function maketime (val)
     if hours < 1000 then
         seconds = ("0" .. (val % 60)):sub(-2)
         minutes = ("0" .. ((val // 60) % 60)):sub(-2)
-        hours = ("0" .. hours):sub(-3)
+        hours = ("00" .. hours):sub(-3)
         timeformat = (hours .. ":" .. minutes .. ":" .. seconds)
     else
         timeformat = hours .. "H"
