@@ -30,7 +30,7 @@ graphic = graphic .. "back.drawBox(10, 10, 10, 10, 0xFF0000FF)\n"
 graphic = graphic .. "const value = await back.encode();\n"
 graphic = graphic .. "fs.writeFileSync('./output/file.png', value);\n"
 graphic = graphic .. "})();"
-print("{" .. "set:graphic:|"}
+print("{" .. "set:graphic:|")
 print(graphic)
 print("}")
 
