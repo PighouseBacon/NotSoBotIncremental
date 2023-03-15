@@ -139,4 +139,4 @@ elseif input[2] ~= nil then
 end
 
 print("Your next code is:")
-print(encode(debug))
+print(encode(tabletostring(game)))
