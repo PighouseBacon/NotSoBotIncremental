@@ -186,7 +186,7 @@ function makeText (val, x, y)
         char = (#val - i) + 1
         char = val:sub(char, char)
         text = text .. "cropped.composite(spritesheet, " .. locs[char] .. ", 0)\n"
-        text = text .. "back.composite(cropped, " .. tostring(x - (6 * i)) .. ", " .. tostring(y) .. ")\n"
+        text = text .. "back.composite(cropped, " .. tostring(x - (6 * (i - 1))) .. ", " .. tostring(y) .. ")\n"
     end
     return text
 end
