@@ -1,4 +1,4 @@
-print("Version 10")
+print("Version 12")
 
 if "{id}" ~= "221158868938522624" then
     oops(3)
@@ -22,7 +22,7 @@ game[2] = game[2] + getClickValue()
 game[6][2] = game[6][2] + getClickValue()
 game[6][3] = game[6][3] + 1
 
-buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
+buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(10000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
 
 --then, execute any commands
