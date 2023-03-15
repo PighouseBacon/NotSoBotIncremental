@@ -28,8 +28,8 @@ upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
 --then, execute any commands
 if input[2] == "buy" then
     if input[3] == "upgrade" then
-        if type(tonumber(input[3])) == "number" then
-            id = tonumber(input[3])
+        if type(tonumber(input[4])) == "number" then
+            id = tonumber(input[4])
             if game[4][id] == nil then
                 print("That upgrade doesn't exist!")
             elseif game[4][id] then
