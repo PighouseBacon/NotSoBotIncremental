@@ -20,6 +20,7 @@ game[6][2] = game[6][2] + moneytick
 game[3][1] = game[3][1] + (game[3][2] * getMakerValue() * difference)
 game[2] = game[2] + getClickValue()
 game[6][2] = game[6][2] + getClickValue()
+game[6][3] = game[6][3] + 1
 
 buildingcosts = {math.floor(10 * (2^game[3][1]) + 0.5), math.floor(1000 * (5^game[3][2]) + 0.5)}
 upgradecosts = {10, 500, 1000, 50000, 1e5, 5e6, 1e7, 5e8}
