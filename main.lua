@@ -1,8 +1,9 @@
-print("Version 12")
-
+--[[
+print("Version 1")
 if "{id}" ~= "221158868938522624" then
     oops(3)
 end
+--]]
 
 input = split("{args} ", " ")
 game = decode(input[1])
