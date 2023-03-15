@@ -121,7 +121,14 @@ elseif input[2] == "coop" or input[2] == "co-op" then
             print("Invalid ID!")
         end
     elseif input[3] == "list" then
-        for i = 1, #game[5] do
+        page = 1
+        if type(tonumber(input[4])) == "number" and tonumber(input[4]) == math.floor(tonumber(input[4])) then
+            page = tonumber(input[4])
+        elseif input[4] ~= nil then
+            print("That's not a valid page!")
+        end
+        print("Page " .. tostring(page) .. ":")
+        for i = ((page - 1) * 20) + 1, math.min(#game[5], page * 20) do
             print("Player " .. tostring(i) .. ": <@" .. tostring(game[5][i]) .. ">")
         end
     else
@@ -131,6 +138,5 @@ elseif input[2] ~= nil then
     print("Unknown command!")
 end
 
-debug = tabletostring(game)
-print(debug)
+print("Your next code is:")
 print(encode(debug))
