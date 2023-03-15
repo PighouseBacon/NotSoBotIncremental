@@ -8,7 +8,6 @@ function oops (id, other)
             print("Purple upgrades boost makers,")
             print("And orange upgrades boost all three!")
             print("The plus upgrades give a 2x boost, and the star upgrades give a 5x boost (for a total of x10).")
-            print("Upgrades must be bought in order, from left to right. They also get more expensive from left to right.")
             print("When you buy an upgrade, it will be tinted green. If you cannot afford an upgrade, it will be tinted black.")
             print("Upgrades without a tint indicate that you have enough resources to buy it.")
         elseif input[2] == "command" or input[2] == "commands" then
@@ -138,21 +137,20 @@ function tabletostring (table)
     return message
 end
 
---[[ old sciformat: had to change this due to requiring less total lines in the iscript
 function sciformat (val)
     if val == math.huge then
         return "!"
     end
     exponent = math.floor(math.log(val, 10))
-    if exponent >= 3 then
+    if exponent >= 4 then
         mantissa = math.floor(val / (10^(exponent - 2)))
         mantissa = tostring(mantissa / 100)
-        return (mantissa .. "e" .. tostring(exponent))
+        return (mantissa .. "E" .. tostring(exponent))
     end
     return tostring(val)
 end
---]]
 
+--[[ made this sciformat for smaller string widths, not necessary anymore
 function sciformat (val)
     exponent = math.floor(math.log(val, 10))
     if exponent >= 100 then
@@ -167,10 +165,11 @@ function sciformat (val)
     end
     return tostring(val)
 end
+--]]
 
 function maketime (val)
     hours = (val // 3600)
-    if hours < 100 then
+    if hours < 1000 then
         seconds = ("0" .. (val % 60)):sub(-2)
         minutes = ("0" .. ((val // 60) % 60)):sub(-2)
         hours = ("0" .. hours):sub(-2)
@@ -186,8 +185,8 @@ function makeText (val, x, y)
     for i = 1, #val do
         char = (#val - i) + 1
         char = val:sub(char, char)
-        text = text .. "\noverlay cropped spritesheet " .. locs[char] .. " 0"
-        text = text .. "\noverlay template cropped " .. tostring(x - (48 * i)) .. " ".. tostring(y)
+        text = text .. "cropped.composite(spritesheet, " .. locs[char] .. ", 0)\n"
+        text = text .. "back.composite(cropped, " .. tostring(x - (6 * i)) .. ", " .. tostring(y) .. ")\n"
     end
     return text
 end
