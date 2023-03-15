@@ -44,7 +44,7 @@ end
 function genCode ()
     time = tostring(os.time())
     id = "{id}"
-    message = time .. ",0,{0,0},{false,false,false,false,false,false,false,false},{" .. id .. "},{" .. time .. ",0},"
+    message = time .. ",0,{0,0},{false,false,false,false,false,false,false,false},{" .. id .. "},{" .. time .. ",0,0},"
     return encode(message)
 end
 
