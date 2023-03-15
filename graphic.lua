@@ -16,7 +16,7 @@ end
 
 --setup
 graphic = "load https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/incremental.png\n"
-graphic = graphic .. "load https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png\n\n"
+graphic = graphic .. "load https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/spritesheet.png\n\n"
 graphic = graphic .. "const fs = require('fs');\n"
 graphic = graphic .. "const ImageScript = require('imagescript');\n"
 graphic = graphic .. "(async () => {\n"
