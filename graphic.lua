@@ -1,13 +1,3 @@
-colors = {"0", "504"}
-for i = 1, #game[4] do
-    if game[4][i] then
-        colors[1] = tostring((i * 64) - 8)
-    end
-    if game[2] >= upgradecosts[i] or game[4][i] then
-        colors[2] = tostring(((8 - i) * 64) - 8)
-    end
-end
-
 chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "E", "H", ".", ":", "!", "%"}
 locs = {}
 for i = 1, #chars do
@@ -24,8 +14,41 @@ graphic = graphic .. "var back = await ImageScript.decode(fs.readFileSync(proces
 graphic = graphic .. "var spritesheet = await ImageScript.decode(fs.readFileSync(process.env.FILE_2));\n"
 graphic = graphic .. "var cropped = new ImageScript.Image(5, 5);\n"
 
---actual graphic
+--resources
 graphic = graphic .. makeText(sciformat(game[2]), 35, 13)
+graphic = graphic .. makeText(sciformat(game[3][1] * getFormerValue()), 73, 13)
+graphic = graphic .. makeText(sciformat(getClickValue()), 111, 13)
+graphic = graphic .. makeText(sciformat(game[3][1]), 35, 29)
+graphic = graphic .. makeText(sciformat(buildingcosts[1]), 73, 29)
+graphic = graphic .. makeText(sciformat(getFormerValue()), 111, 29)
+graphic = graphic .. makeText(sciformat(game[3][2]), 35, 45)
+graphic = graphic .. makeText(sciformat(buildingcosts[2]), 73, 45)
+graphic = graphic .. makeText(sciformat(getMakerValue()), 111, 45)
+
+--upgrades
+for i = 1, #game[4] do
+    coords = tostring(122 + (38 * ((i - 1) % 2))) .. ", " .. tostring(26 * ((i - 1) // 2))
+    if game[4][i] then
+        graphic = graphic .. "var green = new ImageScript.Image(" .. coords .. ").fill(0x22B14C80);\n"
+        graphic = graphic .. "back.composite(green, 122, 4);\n"
+    elseif game[2] < upgradecosts[i] then
+        graphic = graphic .. "var black = new ImageScript.Image(" .. coords .. ").fill(0x00000080);\n"
+        graphic = graphic .. "back.composite(black, 122, 4);\n"
+    end
+end
+
+--stats
+graphic = graphic .. makeText(maketime(difference), 53, 65)
+graphic = graphic .. makeText(maketime(now - game[6][1]), 53, 81)
+if #game[5] > 1 then
+    graphic = graphic .. "var cover = new ImageScript.Image(55, 7).fill(0xFFFFFFFF);\n"
+    graphic = graphic .. "back.composite(cover, 4, 96);\n"
+    graphic = graphic .. makeText(tostring(#game[5]), 53, 97)
+end
+graphic = graphic .. makeText(sciformat(game[6][2]), 111, 65)
+graphic = graphic .. makeText(sciformat(game[6][3]), 111, 81)
+--%done   graphic = graphic .. makeText(.. "%", 111, 97)
+
 
 --finish
 graphic = graphic .. "back.scale(10)\n"
@@ -35,73 +58,3 @@ graphic = graphic .. "})();"
 print("{" .. "set:graphic|")
 print(graphic)
 print("}")
-
---[[
-graphic = "{" .. "iscript: "
-graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/game%20background.png template"
-graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
-graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
---money value
-graphic = graphic .. makeText(sciformat(game[2]), 328, 384)
---money/sec
-graphic = graphic .. makeText(sciformat(game[3][1] * getFormerValue()), 632, 384)
---money/click
-graphic = graphic .. makeText(sciformat(getClickValue()), 936, 384)
---formers
-graphic = graphic .. makeText(sciformat(game[3][1]), 328, 512)
---formers cost
-graphic = graphic .. makeText(sciformat(buildingcosts[1]), 632, 512)
---formers making
-graphic = graphic .. makeText(sciformat(getFormerValue()), 936, 512)
---makers
-graphic = graphic .. makeText(sciformat(game[3][2] * getMakerValue()), 328, 640)
---makers cost
-graphic = graphic .. makeText(sciformat(buildingcosts[2]), 632, 640)
---makers making
-graphic = graphic .. makeText(sciformat(getMakerValue()), 936, 640)
---upgrades
-if colors[1] ~= "0" then
-    graphic = graphic .. "\ncreate green " .. colors[1] .. " 56 34 177 76 192"
-    graphic = graphic .. "\noverlay template green 432 696"
-end
-if colors[2] ~= "-8" then
-    graphic = graphic .. "\ncreate black " .. colors[2] .. " 56 0 0 0 128"
-    graphic = graphic .. "\noverlay template black " .. tostring(936 - colors[2]) .. " 696"
-end
---render
-graphic = graphic .. "\nrender template}\n"
-
-if #split(graphic, "\n") > 50 then
-    print(sciformat(game[2]))
-    print(sciformat(game[3][1] * getFormerValue()))
-    print(sciformat(getClickValue()))
-    print(sciformat(game[3][1]))
-    print(sciformat(buildingcosts[1]))
-    print(sciformat(getFormerValue()))
-    print(sciformat(game[3][2] * getMakerValue()))
-    print(sciformat(buildingcosts[2]))
-    print(sciformat(getMakerValue()))
-    graphic = ""
-end
-
---stats graphic
-graphic = graphic .. "{" .. "iscript: "
-graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/stats.png template"
-graphic = graphic .. "\nload https://raw.githubusercontent.com/PighouseBacon/NotSoBotIncremental/main/pictures/numbers%20spritesheet.png spritesheet"
-graphic = graphic .. "\ncreate cropped 40 40 0 0 0 255"
---prev
-graphic = graphic .. makeText(maketime(difference), 424, 424)
---start
-graphic = graphic .. makeText(maketime(now - game[6][1]), 824, 424)
---total
-graphic = graphic .. makeText(sciformat(game[6][2]), 424, 552)
---co-op
-if #game[5] > 1 then
-    graphic = graphic .. "\ncreate cover 392 56 255 255 255 255"
-    graphic = graphic .. "\noverlay template cover 432 544"
-    graphic = graphic .. makeText(tostring(#game[5]), 824, 552)
-end
---render
-graphic = graphic .. "\nrender template}"
-
---]]
