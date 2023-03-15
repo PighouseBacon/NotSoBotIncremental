@@ -55,6 +55,6 @@ graphic = graphic .. "back.scale(10)\n"
 graphic = graphic .. "const value = await back.encode();\n"
 graphic = graphic .. "fs.writeFileSync('./output/file.png', value);\n"
 graphic = graphic .. "})();"
-print("{" .. "set:graphic|")
+print("{" .. "js:")
 print(graphic)
 print("}")
