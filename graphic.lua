@@ -50,7 +50,7 @@ end
 graphic = graphic .. makeText(sciformat(game[6][2]), 111, 65)
 graphic = graphic .. makeText(sciformat(game[6][3]), 111, 81)
 percent = math.max(0, 50 * (quantity / 8))
-percent = percent + (5 * math.min(10, math.max(0, math.log(game[2], 10))))
+percent = percent + (5 * math.min(10, math.max(0, math.log(game[6][2], 10))))
 percent = tostring(math.floor(percent * 100) / 100)
 graphic = graphic .. makeText(percent .. "%", 111, 97)
 
