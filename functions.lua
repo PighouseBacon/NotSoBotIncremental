@@ -17,6 +17,9 @@ function oops (id, other)
             print("coop add [id]:   allows another user to play this savefile")
             print("coop remove [id]:   removes a user from playing this savefile")
             print("coop list [page]:   lists the current users who can play this savefile")
+        elseif input[2] ~= nil then
+            print("Help for this section doesn't exist!")
+            print("Maybe ping <@221158868938522624> to have it added?")
         else
             print("This is an incremental game using NotSoBot tag scripting.")
             print("To play, each time you use the tag, you will get a code.")
