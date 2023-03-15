@@ -143,29 +143,15 @@ function sciformat (val)
     end
     exponent = math.floor(math.log(val, 10))
     if exponent >= 4 then
-        mantissa = math.floor(val / (10^(exponent - 2)))
-        mantissa = tostring(mantissa / 100)
+        sig = 2 - math.floor(math.log(exponent, 10))
+        mantissa = tostring(math.floor(val / (10^(exponent - sig))))
+        if #mantissa > 1 then
+            mantissa = mantissa:sub(1, 1) .. "." .. mantissa:sub(2)
+        end
         return (mantissa .. "E" .. tostring(exponent))
     end
     return tostring(val)
 end
-
---[[ made this sciformat for smaller string widths, not necessary anymore
-function sciformat (val)
-    exponent = math.floor(math.log(val, 10))
-    if exponent >= 100 then
-        return "!"
-    elseif exponent >= 3 then
-        if exponent >= 10 then
-            mantissa = ""
-        else
-            mantissa = math.floor(val / (10^exponent))
-        end
-        return (mantissa .. "e" .. tostring(exponent))
-    end
-    return tostring(val)
-end
---]]
 
 function maketime (val)
     hours = (val // 3600)
