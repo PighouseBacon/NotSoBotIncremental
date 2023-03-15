@@ -27,7 +27,7 @@ graphic = graphic .. makeText(sciformat(getMakerValue()), 111, 45)
 
 --upgrades
 for i = 1, #game[4] do
-    coords = tostring(122 + (38 * ((i - 1) % 2))) .. ", " .. tostring(26 * ((i - 1) // 2))
+    coords = tostring(122 + (38 * ((i - 1) % 2))) .. ", " .. tostring(4 + (26 * ((i - 1) // 2)))
     if game[4][i] then
         graphic = graphic .. "var green = new ImageScript.Image(37, 21).fill(0x22B14C80);\n"
         graphic = graphic .. "back.composite(green, " .. coords .. ");\n"
