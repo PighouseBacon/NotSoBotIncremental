@@ -8,10 +8,10 @@ for i = 1, #game[4] do
     end
 end
 
-chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "e", ".", ":", "!", "H"}
+chars = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "E", "H", ".", ":", "!", "%"}
 locs = {}
 for i = 1, #chars do
-    locs[chars[i]] = tostring(-48 * (i - 1))
+    locs[chars[i]] = tostring(-6 * (i - 1))
 end
 
 --setup
@@ -20,13 +20,15 @@ graphic = graphic .. "load https://raw.githubusercontent.com/PighouseBacon/NotSo
 graphic = graphic .. "const fs = require('fs');\n"
 graphic = graphic .. "const ImageScript = require('imagescript');\n"
 graphic = graphic .. "(async () => {\n"
-graphic = graphic .. "const back = await ImageScript.decode(fs.readFileSync(process.env.FILE_1));\n"
-graphic = graphic .. "const spritesheet = await ImageScript.decode(fs.readFileSync(process.env.FILE_2));\n"
+graphic = graphic .. "var back = await ImageScript.decode(fs.readFileSync(process.env.FILE_1));\n"
+graphic = graphic .. "var spritesheet = await ImageScript.decode(fs.readFileSync(process.env.FILE_2));\n"
+graphic = graphic .. "var cropped = new ImageScript.Image(5, 5);\n"
 
 --actual graphic
-graphic = graphic .. "back.drawBox(10, 10, 10, 10, 0xFF0000FF)\n"
+graphic = graphic .. makeText(sciformat(game[2]), 35, 13)
 
 --finish
+graphic = graphic .. "back.scale(10)\n"
 graphic = graphic .. "const value = await back.encode();\n"
 graphic = graphic .. "fs.writeFileSync('./output/file.png', value);\n"
 graphic = graphic .. "})();"
