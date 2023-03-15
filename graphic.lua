@@ -29,11 +29,11 @@ graphic = graphic .. makeText(sciformat(getMakerValue()), 111, 45)
 for i = 1, #game[4] do
     coords = tostring(122 + (38 * ((i - 1) % 2))) .. ", " .. tostring(26 * ((i - 1) // 2))
     if game[4][i] then
-        graphic = graphic .. "var green = new ImageScript.Image(" .. coords .. ").fill(0x22B14C80);\n"
-        graphic = graphic .. "back.composite(green, 122, 4);\n"
+        graphic = graphic .. "var green = new ImageScript.Image(37, 21).fill(0x22B14C80);\n"
+        graphic = graphic .. "back.composite(green, " .. coords .. ");\n"
     elseif game[2] < upgradecosts[i] then
-        graphic = graphic .. "var black = new ImageScript.Image(" .. coords .. ").fill(0x00000080);\n"
-        graphic = graphic .. "back.composite(black, 122, 4);\n"
+        graphic = graphic .. "var black = new ImageScript.Image(37, 21).fill(0x00000080);\n"
+        graphic = graphic .. "back.composite(black, " .. coords .. ");\n"
     end
 end
 
